@@ -14,6 +14,7 @@ class Api extends AbstractApi
 
     private $_sid = null;
     private $_sessionName = 'default';
+    private $doNotDisconnect = false;
 
     /**
      * Info API setup
@@ -84,6 +85,18 @@ class Api extends AbstractApi
 
         return $this;
     }
+	
+    /**
+     * Resume a previously active session
+     * 
+     * @param string $sessionId
+     * @param string $sessionName
+     */
+    public function resumeSession($sessionId, $sessionName)
+    {
+        $this->_sid = $sessionId;
+        $this->_sessionName = $sessionName;
+    }
 
     /**
      * Return Session Id
@@ -127,7 +140,7 @@ class Api extends AbstractApi
 
     public function __destruct()
     {
-        if ($this->_sid !== null) {
+        if (!$this->doNotDisconnect && $this->_sid !== null) {
             $this->disconnect();
         }
     }
