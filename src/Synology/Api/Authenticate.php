@@ -53,6 +53,28 @@ class Authenticate extends AbstractApi
     {
         return $this->_authApi->disconnect();
     }
+	
+	/**
+     * Resume a previously active session
+     * 
+     * @param string $sessionId
+     * @param string $sessionName
+     */
+    public function resumeSession($sessionId, $sessionName)
+    {
+        return $this->_authApi->resumeSession($sessionId, $sessionName);
+    }
+	
+	/**
+     * Set whether or not the script should destroy the session on completion (true)
+	 * or not (false)
+     * 
+     * @param boolean $disconnect
+     */
+	public function setDisconnectOnDestruct($disconnect)
+	{
+		return $this->_authApi->setDisconnectOnDestruct($disconnect);
+	}
 
     /**
      * {@inheritDoc}
