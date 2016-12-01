@@ -86,6 +86,19 @@ class Api extends AbstractApi
         return $this;
     }
 	
+	
+	/**
+     * Set whether or not the script should destroy the session on completion (true)
+	 * or not (false)
+     * 
+     * @param boolean $disconnect
+     */
+	public function setDisconnectOnDestruct($disconnect)
+	{
+		$this->doNotDisconnect = !$disconnect;
+	}
+	
+	
     /**
      * Resume a previously active session
      * 
